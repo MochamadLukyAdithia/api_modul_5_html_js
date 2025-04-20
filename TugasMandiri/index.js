@@ -3,6 +3,25 @@ let isEditing = false;
 let allUsers = []; 
 
 
+function errorIfDataExists()
+{
+    const name = $("#name").val();
+    const avatar = $("#avatar").val();
+    
+    if (!name || !avatar) {
+        showNotification("Please fill in all fields", "error");
+        return true;
+    }
+    
+    const existingUser = allUsers.find(user => user.name === name && user.avatar !== avatar);
+    
+    if (existingUser) {
+        showNotification("User already exists", "error");
+        return true;
+    }
+    
+    return false;
+}
 function showNotification(message, type = 'success') {
     const notification = $("#notification");
     const notificationText = $("#notificationText");
@@ -218,16 +237,18 @@ function searchUsers(query) {
     updateStatistics(allUsers.length, filteredUsers.length);
 }
 
-
 $("#userForm").submit(function(event) {
     event.preventDefault();
-    
+
     const name = $("#name").val();
     const avatar = $("#avatar").val();
     const userId = $("#userId").val();
-    
-    if (isEditing) {
 
+    if (!isEditing && errorIfDataExists()) {
+        return;
+    }
+
+    if (isEditing) {
         $.ajax({
             url: `${apiUrl}/${userId}`,
             method: "PUT",
@@ -245,7 +266,6 @@ $("#userForm").submit(function(event) {
             }
         });
     } else {
-
         $.ajax({
             url: apiUrl,
             method: "POST",
