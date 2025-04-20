@@ -30,7 +30,7 @@
     <div class="container mx-auto px-4 py-8 max-w-6xl">
         <!-- Header -->
         <header class="mb-8">
-            <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Aplikasi CRUD API by Mochamad Luky Adithia    </h1>
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Aplikasi CRUD API by Mochamad Luky Adithia</h1>
             <div class="h-1 w-32 bg-primary mx-auto rounded"></div>
         </header>
         
@@ -40,7 +40,7 @@
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Cari user berdasarkan nama..." 
+                    placeholder="Cari produk berdasarkan nama..." 
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pl-10"
                 >
                 <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
@@ -54,35 +54,49 @@
             <div class="w-full md:w-1/3 bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
                     <i class="fas fa-user-plus mr-2 text-primary"></i>
-                    Form User
+                    Form Produk
                 </h2>
                 <form id="userForm" class="space-y-4">
                     <input type="hidden" id="userId">
+                    
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama:</label>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk:</label>
                         <input 
                             type="text" 
                             id="name" 
                             name="name"     
                             required 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                         >
                     </div>
+                    
                     <div>
-                        <label for="avatar" class="block text-sm font-medium text-gray-700 mb-1">Avatar URL:</label>
+                        <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Harga:</label>
                         <input 
-                            type="text" 
-                            id="avatar" 
-                            name="avatar" 
+                            type="number" 
+                            id="price" 
+                            name="price" 
                             required 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                         >
                     </div>
+                    
+                    <div>
+                        <label for="stock" class="block text-sm font-medium text-gray-700 mb-1">Stok:</label>
+                        <input 
+                            type="number" 
+                            id="stock" 
+                            name="stock" 
+                            required 
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                        >
+                    </div>
+                    
                     <div class="flex space-x-2 pt-2">
                         <button 
                             type="submit" 
                             id="submitBtn" 
-                            class="px-4 py-2 bg-primary text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-150 flex items-center"
+                            class="px-4 py-2 bg-primary text-white rounded-md hover:bg-indigo-700 flex items-center"
                         >
                             <i class="fas fa-plus-circle mr-2"></i>
                             <span>Tambah Data</span>
@@ -90,7 +104,7 @@
                         <button 
                             type="button" 
                             id="clearBtn" 
-                            class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition duration-150"
+                            class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
                         >
                             <i class="fas fa-eraser mr-1"></i>
                             Clear
@@ -102,17 +116,17 @@
             <!-- Data Section -->
             <div class="w-full md:w-2/3 bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class="fas fa-users mr-2 text-primary"></i>
-                    Data Users
+                    <i class="fas fa-boxes mr-2 text-primary"></i>
+                    Data Produk
                 </h2>
                 
                 <div id="statistics" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                     <div class="bg-blue-50 p-4 rounded-lg border border-blue-100 flex items-center">
                         <div class="bg-blue-100 p-3 rounded-full mr-3">
-                            <i class="fas fa-users text-blue-500"></i>
+                            <i class="fas fa-boxes text-blue-500"></i>
                         </div>
                         <div>
-                            <div class="text-sm text-gray-500">Total Users</div>
+                            <div class="text-sm text-gray-500">Total Produk</div>
                             <div id="totalUsers" class="text-lg font-semibold">0</div>
                         </div>
                     </div>
@@ -122,7 +136,7 @@
                             <i class="fas fa-search text-green-500"></i>
                         </div>
                         <div>
-                            <div class="text-sm text-gray-500">Found Results</div>
+                            <div class="text-sm text-gray-500">Ditemukan Hasil</div>
                             <div id="foundUsers" class="text-lg font-semibold">0</div>
                         </div>
                     </div>
@@ -132,7 +146,7 @@
                             <i class="fas fa-clock text-purple-500"></i>
                         </div>
                         <div>
-                            <div class="text-sm text-gray-500">Last Updated</div>
+                            <div class="text-sm text-gray-500">Terakhir Diperbarui</div>
                             <div id="lastUpdated" class="text-lg font-semibold">-</div>
                         </div>
                     </div>
@@ -145,28 +159,27 @@
                     </div>
                 </div>
                 
-             
                 <div id="emptyState" class="hidden text-center py-8">
                     <div class="text-gray-400 mb-2">
                         <i class="fas fa-search fa-3x"></i>
                     </div>
-                    <h3 class="text-lg font-medium text-gray-600">No users found</h3>
+                    <h3 class="text-lg font-medium text-gray-600">No products found</h3>
                     <p class="text-gray-500">Try adjusting your search criteria</p>
                 </div>
                 
-             
                 <div id="userDetail" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
                     <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative">
                         <button id="closeDetail" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
                             <i class="fas fa-times"></i>
                         </button>
                         
-                        <div class="flex items-center mb-6">
-                            <img id="detailAvatar" src="" alt="" class="w-24 h-24 rounded-full border-4 border-primary object-cover">
-                            <div class="ml-4">
-                                <h2 id="detailName" class="text-xl font-bold text-gray-800"></h2>
-                                <p class="text-gray-600">ID: <span id="detailId"></span></p>
-                            </div>
+                        <div class="mb-6">
+                            <h2 id="detailName" class="text-xl font-bold text-gray-800 mb-2"></h2>
+                            <p class="text-gray-600">ID: <span id="detailId" class="font-medium"></span></p>
+                            <p class="text-gray-600 mt-2">Harga: <span id="detailPrice" class="font-medium"></span></p>
+                            <p class="text-gray-600">Stok: <span id="detailStock" class="font-medium"></span></p>
+                            <p class="text-gray-600 mt-2">Created: <span id="detailCreated" class="font-medium"></span></p>
+                            <p class="text-gray-600">Updated: <span id="detailUpdated" class="font-medium"></span></p>
                         </div>
                         
                         <div class="flex justify-end">
@@ -179,7 +192,6 @@
             </div>
         </div>
     </div>
-    
 
     <div id="notification" class="fixed top-4 right-4 px-6 py-3 rounded-md shadow-lg transform transition-opacity duration-300 opacity-0 z-50">
         <div class="flex items-center">
@@ -188,8 +200,6 @@
         </div>
     </div>
     
-    <script src="index.js">
-      
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>

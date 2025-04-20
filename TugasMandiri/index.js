@@ -6,7 +6,7 @@ let allUsers = [];
 function errorIfDataExists()
 {
     const name = $("#name").val();
-    const avatar = $("#avatar").val();
+    const avatar = $("#avatar").val();  
     
     if (!name || !avatar) {
         showNotification("Please fill in all fields", "error");
